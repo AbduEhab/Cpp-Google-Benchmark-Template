@@ -81,6 +81,15 @@ inline T random(T min = 0.0, T max = 1.0)
     return (T)dis(gen);
 }
 
+template <typename T>
+inline T random_local(T min = 0.0, T max = 1.0)
+{
+    thread_local std::random_device rd;
+    thread_local std::mt19937 gen(rd());
+    thread_local std::uniform_real_distribution<> dis(min, max);
+    return (T)dis(gen);
+}
+
 /**
  * @brief Map a value from one range to another
  *

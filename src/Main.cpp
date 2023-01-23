@@ -22,4 +22,14 @@ static void mt19937(benchmark::State &state)
 }
 BENCHMARK(mt19937);
 
+static void mt19937_local(benchmark::State &state)
+{
+  // Code before the loop is not measured
+  for (auto _ : state)
+  {
+    random_local(0.0, 1.0);
+  }
+}
+BENCHMARK(mt19937_local);
+
 BENCHMARK_MAIN();

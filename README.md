@@ -14,4 +14,4 @@ Once you've cloned the repo, setup cmake with `cmake -S . -B build`. The binarie
 
 
 ### Demo Renders
-![Demo 1](https://github.com/AbduEhab/Cpp-Google-Benchmark-Template/tree/main/Screenshots/Demo.jpg)
+![Demo 1](https://github.com/AbduEhab/Cpp-Google-Benchmark-Template/blob/main/Screenshots/Demo.jpg)

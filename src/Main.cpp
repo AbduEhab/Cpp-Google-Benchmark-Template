@@ -2,28 +2,24 @@
 
 #include <benchmark/benchmark.h>
 
-static void StringCreation(benchmark::State &state)
-{
-  // Code inside this loop is measured repeatedly
-  for (auto _ : state)
-  {
-    std::string created_string("hello");
-    // Make sure the variable is not optimized away by compiler
-    benchmark::DoNotOptimize(created_string);
-  }
-}
-// Register the function as a benchmark
-BENCHMARK(StringCreation);
-
-static void StringCopy(benchmark::State &state)
+static void rand(benchmark::State &state)
 {
   // Code before the loop is not measured
-  std::string x = "hello";
   for (auto _ : state)
   {
-    std::string copy(x);
+    std::rand();
   }
 }
-BENCHMARK(StringCopy);
+BENCHMARK(rand);
+
+static void mt19937(benchmark::State &state)
+{
+  // Code before the loop is not measured
+  for (auto _ : state)
+  {
+    random(0.0, 1.0);
+  }
+}
+BENCHMARK(mt19937);
 
 BENCHMARK_MAIN();

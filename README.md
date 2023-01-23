@@ -1,11 +1,17 @@
-# Cmake-Template Repo
+# Overview
 
-For those who are like me and just wanna yoink some ready-to-go clean project files.
+This is a `clone and run` benchmark template that runs google benchmark. I use this locally a lot and thought maybe more people can use it too!
 
-## Requirements (for compiling)
+# Requirements
 - [CMake](https://cmake.org/)
-- x86 or x64 compiler (only tested with `MSVC`, `MinGW` on windows and `GCC` for UNIX)
+- A cpp compiler (havent tested with clang, but it should work)
 
-## Profiling
+## Getting Started
+Once you've cloned the repo, setup cmake with `cmake -S . -B build`. The binaries should be automatically copied in to the bin folder (no mater the build config or platform). 
 
-You can use https://ui.perfetto.dev/ to view the profiling data. The data is stored in `profiling/` and is named `perfetto_trace.json`.
+### 3rd party libaries
+- [Googele Benchamrk](https://github.com/google/benchmark/tree/5e78bedfb07c615edb2b646d1e354980268c1728)
+
+
+### Demo Renders
+![Demo 1](https://github.com/AbduEhab/Cpp-Google-Benchmark-Template/tree/main/Screenshots/Demo.png)

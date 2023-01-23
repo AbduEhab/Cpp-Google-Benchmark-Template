@@ -1,8 +1,7 @@
 # Set CMake version number
 cmake_minimum_required(VERSION 3.13)
 
-# Change "Cmake-Template" to your project name
-project(Cmake-Template VERSION 0.8.0 LANGUAGES CXX)
+project(Benchmark-Template VERSION 0.8.0 LANGUAGES CXX)
 enable_language(CXX)
 
 # ----------------------------------------------------------------------------------------------
@@ -97,16 +96,24 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 endif()
 
 # ----------------------------------------------------------------------------------------------
-
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING
         "Build not specified, defaulted to RelWithDebInfo" FORCE)
     message(STATUS "Build type not specified, defaulted to RelWithDebInfo")
+else(NOT CMAKE_BUILD_TYPE)
+    message(STATUS "Build type specified as ${CMAKE_BUILD_TYPE}")
 endif(NOT CMAKE_BUILD_TYPE)
 
 # Add locations of other CMakelists.txt (one per call)
 add_subdirectory(
     src
+)
+
+set(BENCHMARK_DOWNLOAD_DEPENDENCIES ON)
+set(DBENCHMARK_ENABLE_LTO TRUE)
+
+add_subdirectory(
+    external/benchmark
 )
 
 # Comment these 2 out if you don't intend on using CTests
@@ -161,6 +168,7 @@ target_link_directories(${PROJECT_NAME}
 # <-- Link needed Libs: -->
 target_link_libraries(${PROJECT_NAME}
     PRIVATE project_options project_warnings
+    PUBLIC benchmark::benchmark benchmark::benchmark_main
 )
 
 # <----------------------->

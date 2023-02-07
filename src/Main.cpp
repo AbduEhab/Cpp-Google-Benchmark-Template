@@ -63,4 +63,29 @@ static void sqrt(benchmark::State &state)
 }
 BENCHMARK(sqrt);
 
+static void bit_manipulation_sqrt(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
+
+    float n = random(0.0f, 100000.0f);
+
+    unsigned long i;
+    float p0, p1;
+
+    p0 = n;
+
+    i = *(unsigned long *)&p0;
+
+    i = 0x1FBD3F7D + (i >> 1);
+
+    p0 = *(float *)&i;
+
+    p1 = 0.5 * (p0 + n / p0); // newtons method
+
+    benchmark::DoNotOptimize(p1);
+  }
+}
+BENCHMARK(bit_manipulation_sqrt);
+
 BENCHMARK_MAIN();
